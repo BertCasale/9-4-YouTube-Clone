@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css';
+import Navbar from "./Components/common/Navbar";
 
 // const test = process.env.REACT_APP_YOUTUBE_API_KEY;
 
