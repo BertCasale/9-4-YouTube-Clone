@@ -1,0 +1,21 @@
+[
+    {
+        "name": {
+            "firstname": "Bert",
+            "lastname": "Casale"
+        },
+        "picture": "https://avatars.githubusercontent.com/u/113523424?v=4",
+        "bio": "Gamer trying to make the world better, one line of code at a time.",
+        "github": "https://github.com/BertCasale"
+    },
+    {
+        "name": {
+            "firstname": "James",
+            "lastname": "Lee"
+        },
+        "picture": "https://avatars.githubusercontent.com/u/102775877?v=4",
+        "bio": "Axis and Allies player, interested in fast maintainable code and data science.",
+        "github": "https://github.com/aardvarkpepper"
+    }
+
+]
