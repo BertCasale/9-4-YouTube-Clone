@@ -2,11 +2,11 @@ import { NavLink } from "react-router-dom";
 
 export default function Navbar() {
 
-  return(<div classname="navbar">
-    YouTube
+  return(<div className="navbar">
+    <p>YouTube</p>
     <nav>
-      <NavLink to="/">Home</NavLink>
-      <NavLink to="/about">About</NavLink>
+      <p><NavLink to="/">Home</NavLink></p>
+      <p><NavLink to="/about">About</NavLink></p>
     </nav>
 
     <form>
