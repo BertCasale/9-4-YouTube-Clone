@@ -1,3 +1,9 @@
+import Comments from "./Comments";
+
 export default function Video() {
-  return(<div></div>);
+  return(
+  <div>
+    <Comments />
+    </div>
+    );
 }
