@@ -1,6 +1,21 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useParams } from "react-router-dom";
+import { useState } from "react";
 
 export default function Navbar() {
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
+
+  //when the text changes, set the search state
+  function textChange(event) {
+    setSearch(event.target.value);
+  }
+
+  //when the search form is submitted, navigate to the page with the videos
+  function searchSubmit(event) {
+    event.preventDefault();
+    event.target.searchbox.value = "";
+    navigate(`/videos/${search}`);
+  }
 
   return(<div className="navbar">
     <p>YouTube</p>
@@ -9,8 +24,13 @@ export default function Navbar() {
       <p><NavLink to="/about">About</NavLink></p>
     </nav>
 
-    <form>
-      <input type="text"></input>
+    <form className="search-form" onSubmit={searchSubmit}>
+      <input 
+        type="text" 
+        onChange={textChange}
+        placeholder="Search..." 
+        id="searchbox" 
+        name="searchbox"></input>
       <button type="submit">Search</button>
     </form>
     
