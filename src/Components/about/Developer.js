@@ -7,7 +7,7 @@ export default function Developer({ developerBio }) {
             <div className="textContainer">
                 <h2>{developerBio.name.firstname} {developerBio.name.lastname}</h2>
                 <p>{developerBio.bio}</p>
-                <p>{developerBio.github}</p>
+                <a href={developerBio.github} target="_blank" rel="noopener noreferrer">Check out my Github!</a>
             </div>
         </div>
     );
