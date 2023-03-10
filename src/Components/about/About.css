@@ -1,3 +1,30 @@
-.emphasis {
-    font-style: italic;
+.developerCard {
+    display: grid;
+    grid-template-columns: 200px 600px;
+    gap: 10px;
+    padding: 20px;
+    height: 200px;
+    width: 800px;
+    margin: auto;
+    border: 2px solid black;
+    border-radius: 30px;
+}
+.portraitContainer {
+    grid-column: 1 / 2;
+    width: 200px;
+    height: 200px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+.developerPortrait {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+.textContainer {
+    padding: 20px;
+    grid-column: 2 / 2;
+    text-align: center;
 }
