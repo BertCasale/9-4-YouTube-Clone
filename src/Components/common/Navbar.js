@@ -1,5 +1,6 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import "./Navbar.css"
 
 export default function Navbar() {
   const [search, setSearch] = useState("");
@@ -18,10 +19,10 @@ export default function Navbar() {
   }
 
   return(<div className="navbar">
-    <p>YouTube</p>
     <nav>
-      <p><NavLink to="/">Home</NavLink></p>
-      <p><NavLink to="/about">About</NavLink></p>
+      <p>YouTube</p>
+      <p className="home-link"><NavLink to="/">Home</NavLink></p>
+      <p className="about-link"><NavLink to="/about">About</NavLink></p>
     </nav>
 
     <form className="search-form" onSubmit={searchSubmit}>
