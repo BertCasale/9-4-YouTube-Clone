@@ -1,0 +1,29 @@
+.navbar {
+  background-color: #FA2101;
+  color: white;
+  display: grid;
+  position: sticky;
+  top: 0;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-areas: "nav search .";
+}
+
+nav {
+  display: flex;
+  padding-left: 10px;
+  grid-area: nav;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.home-link {
+  padding: 0px 20px;
+}
+
+.search-form {
+  grid: search;
+  padding: 15px 20px;
+}
