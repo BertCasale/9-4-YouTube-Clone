@@ -1,0 +1,12 @@
+.video-card a{
+  color: black;
+  text-decoration: none;
+}
+
+.search-results {
+  outline: solid 1px black;
+}
+
+.video-card {
+  outline: 1px solid black;
+}
