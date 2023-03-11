@@ -23,7 +23,7 @@ export default function Videos() {
         className="video-card"
         key={video.id.videoId}>
         
-        <Link to="/video/:id">
+        <Link to={`/video/${video.id.videoId}`}>
           <img
             src={video.snippet.thumbnails.high.url}
             alt={video.snippet.title}
