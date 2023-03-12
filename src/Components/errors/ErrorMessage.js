@@ -1,12 +1,11 @@
 import "./ErrorMessage.css"
 import { useEffect, useRef } from "react";
 
-export default function ErrorMessage({setErrorShown, setOpaque}) {
+export default function ErrorMessage({ setErrorShown }) {
   const divRef = useRef(null);
 
   function closeErrorMessage() {
     setErrorShown(false);
-    setOpaque(true);
   }
   
   //focus on the div when rendering
