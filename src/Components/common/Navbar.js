@@ -15,7 +15,7 @@ export default function Navbar() {
   function searchSubmit(event) {
     event.preventDefault();
     event.target.searchbox.value = "";
-    navigate(`/videos/${search}`);
+    navigate(`/videos/${encodeURIComponent(search)}`);
   }
 
   return(<div className="navbar">
