@@ -3,7 +3,7 @@ import { useState } from "react";
 import ErrorMessage from "../errors/ErrorMessage";
 import "./Navbar.css"
 
-export default function Navbar() {
+export default function Navbar({setOpaque}) {
   const [search, setSearch] = useState("");
   const [errorShown, setErrorShown] = useState(false);
   const navigate = useNavigate();
@@ -15,6 +15,7 @@ export default function Navbar() {
 
   function showError() {
     setErrorShown(true);
+    setOpaque(false);
   }
 
   //when the search form is submitted, navigate to the page with the videos
@@ -48,7 +49,7 @@ export default function Navbar() {
     <button onClick={showError}>open error message</button>
 
     
-    {errorShown ? <ErrorMessage setErrorShown={setErrorShown}/>
+    {errorShown ? <ErrorMessage setErrorShown={setErrorShown} setOpaque={setOpaque}/>
     : null}
 
   </div>);
