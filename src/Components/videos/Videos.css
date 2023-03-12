@@ -5,8 +5,13 @@
 
 .search-results {
   outline: solid 1px black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .video-card {
   outline: 1px solid black;
+  margin: 10px;
+  width: 200px;
 }

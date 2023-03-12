@@ -27,7 +27,7 @@ export default function Videos() {
           <img
             src={video.snippet.thumbnails.high.url}
             alt={video.snippet.title}
-            height="150px"
+            width="200px"
           />
           <h3>{video.snippet.title}</h3>
           <h4>{video.snippet.channelTitle}</h4>
