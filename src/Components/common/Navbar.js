@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./Navbar.css"
 
-export default function Navbar() {
+export default function Navbar({setOpaque}) {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
@@ -34,6 +34,7 @@ export default function Navbar() {
         name="searchbox"></input>
       <button type="submit">Search</button>
     </form>
-    
-  </div>);
+  </div>
+
+  );
 }
