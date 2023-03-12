@@ -1,0 +1,11 @@
+.error-modal {
+  outline: solid 1px black;
+  width: 60vw;
+  text-align: center;
+  position: fixed;
+}
+
+.close-button {
+  position: relative;
+  left: 45%;
+}
