@@ -17,34 +17,35 @@ export default function Videos() {
       setSearchResults([...response.items]);
     })} catch (error) {
       console.log(error);
-      showError();
+      setErrorShown(true);
     }
   }, [topic]);
 
-  function showError() {
-    setErrorShown(true);
-  }
+  return(<div className="Videos">
+    <div className="search-results">
+      {searchResults.map((video) => {
+        return(<div 
+          className="video-card"
+          key={video.id.videoId}>
+          
+          <Link to={`/video/${video.id.videoId}`}>
+            <img
+              src={video.snippet.thumbnails.high.url}
+              alt={video.snippet.title}
+              width="200px"
+            />
+            <h3>{video.snippet.title}</h3>
+            <h4>{video.snippet.channelTitle}</h4>
+          </Link>
 
-  return(<div className="search-results">
-    {searchResults.map((video) => {
-      return(<div 
-        className="video-card"
-        key={video.id.videoId}>
-        
-        <Link to={`/video/${video.id.videoId}`}>
-          <img
-            src={video.snippet.thumbnails.high.url}
-            alt={video.snippet.title}
-            width="200px"
-          />
-          <h3>{video.snippet.title}</h3>
-          <h4>{video.snippet.channelTitle}</h4>
-        </Link>
+        </div>);
+      })}
+    </div>
+    
+    {/* remove this after finalizing css */}
+      <button onClick={() => setErrorShown(true)}>show error message</button>
 
-      </div>);
-    })}
-
-    {errorShown ? <ErrorMessage setErrorShown={setErrorShown} />
-    : null}
+      {errorShown ? <ErrorMessage setErrorShown={setErrorShown} />
+      : null}
   </div>);
 }
