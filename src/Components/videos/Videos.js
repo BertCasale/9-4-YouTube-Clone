@@ -13,7 +13,7 @@ export default function Videos() {
     .then((response) => {
       setSearchResults([...response.items]);
     })
-  }, []);
+  }, [topic]);
 
 
   return(<div className="search-results">
