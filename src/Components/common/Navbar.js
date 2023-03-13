@@ -2,7 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import "./Navbar.css"
 
-export default function Navbar({setOpaque}) {
+export default function Navbar() {
   const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
