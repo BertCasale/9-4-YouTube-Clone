@@ -12,13 +12,14 @@ export default function Videos() {
   //fetch the search results once when the page renders
   //if theres an error, show an error message
   useEffect(() => {
-    try{getTopic(topic)
+    getTopic(topic)
     .then((response) => {
       setSearchResults([...response.items]);
-    })} catch (error) {
+    })
+    .catch ((error) => {
       console.log(error);
       setErrorShown(true);
-    }
+    }) 
   }, [topic]);
 
   return(<div className="Videos">
