@@ -4,7 +4,7 @@ import { getTopic } from "../../Api/fetch";
 import "./Videos.css"
 import ErrorMessage from "../errors/ErrorMessage";
 
-export default function Videos() {
+export default function Videos({comments, setComments}) {
   const { topic } = useParams();
   let [searchResults, setSearchResults] = useState([]);
   const [comments, setComments] = useState([]);

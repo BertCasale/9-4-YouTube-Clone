@@ -114,7 +114,9 @@ const deleteComment = (videoID, commentTag) => {}
 //localStorage is by origin, not URL, so useState in Videos (plural)
 // { prunedVideoID1: [editBoolean, commentArray1], prunedVideoID2: [editBoolean, commentArray2], etc. }
 
-export default function Comments() {
+
+export default function Comments({comments, setComments}) {
+
 
     const location = useLocation();
 

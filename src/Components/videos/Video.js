@@ -3,7 +3,7 @@ import Comments from "./Comments";
 import YouTube from "react-youtube";
 import "./Video.css"
 
-export default function Video() {
+export default function Video({comments, setComments}) {
   const { id } = useParams();
   const opts = {
     height: "360",
@@ -15,7 +15,7 @@ export default function Video() {
 
   return(<div className="Video">
     <YouTube videoId={id} opts={opts} className="youtube-video"/>
-    <Comments />
+    <Comments comments={comments} setComments={setComments}/>
     </div>
     );
 }
