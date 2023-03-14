@@ -330,7 +330,7 @@ const KEY = process.env.REACT_APP_API_KEY
 //   }
 
 export function getTopic(topic) {
-    return (fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=9&q=${topic}&key=${KEY}`).
+    return (fetch(`https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=9&q=${topic}&type=video&key=${KEY}`).
       then((response) => response.json())
     );
   }

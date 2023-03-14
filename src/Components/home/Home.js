@@ -10,7 +10,6 @@ export default function Home() {
     getMostPopular()
     .then((response) => {
       setPopularVideos([...response.items]);
-      console.log(response)
     })
     .catch((error) => {
       console.log(error);
@@ -19,6 +18,7 @@ export default function Home() {
 
 
   return(<div className="Home">
+    <h1>Trending</h1>
     <div className="popular-videos">
       {popularVideos.map((video) => {
         return(<div
