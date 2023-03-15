@@ -4,6 +4,7 @@ import "./Navbar.css"
 
 export default function Navbar() {
   const [search, setSearch] = useState("");
+  const [showFilters, setShowFilters] = useState(false);
   const navigate = useNavigate();
 
   //when the text changes, set the search state
@@ -16,6 +17,10 @@ export default function Navbar() {
     event.preventDefault();
     event.target.searchbox.value = "";
     navigate(`/videos/${encodeURIComponent(search)}`);
+  }
+
+  function showOrHideFilters() {
+    setShowFilters(!showFilters);
   }
 
   return(<div className="navbar">
@@ -33,7 +38,8 @@ export default function Navbar() {
         id="searchbox" 
         name="searchbox"/>
 
-      <div className="filters">
+      <button className="filters-button" onClick={showOrHideFilters}>{showFilters ? "Hide Filters" : "Show Filters"}</button>
+      {showFilters ? <div className="filters">
         <label for="quantity">Quantity:</label>
         <input 
           type="number"
@@ -60,6 +66,7 @@ export default function Navbar() {
 
         <button type="submit">Search</button>
       </div>
+      : null}
       
     </form>
   </div>
