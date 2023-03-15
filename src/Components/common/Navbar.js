@@ -27,12 +27,40 @@ export default function Navbar() {
 
     <form className="search-form" onSubmit={searchSubmit}>
       <input 
-        type="text" 
+        type="search" 
         onChange={textChange}
         placeholder="Search..." 
         id="searchbox" 
-        name="searchbox"></input>
-      <button type="submit">Search</button>
+        name="searchbox"/>
+
+      <div className="filters">
+        <label for="quantity">Quantity:</label>
+        <input 
+          type="number"
+          min="5"
+          max="50"
+          id="quantity"
+          name="quantity"
+          defaultValue="20"/>
+
+        <label for="sortby"></label>
+        <select id="sortby" name="sortby">
+          <option Value="Relevance" selected>Relevance</option>
+          <option Value="Date">Date</option>
+          <option Value="Rating">Rating</option>
+          <option Value="Title">Title</option>
+        </select>
+
+        <label for="safe-search">Safe Search</label>
+        <select id="safe-search" name="safe-search">
+          <option Value="moderate" selected>Moderate</option>
+          <option Value="none">None</option>
+          <option Value="strict">strict</option>
+        </select>
+
+        <button type="submit">Search</button>
+      </div>
+      
     </form>
   </div>
 
