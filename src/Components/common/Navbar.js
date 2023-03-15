@@ -61,7 +61,7 @@ export default function Navbar() {
         <select id="safe-search" name="safe-search">
           <option Value="moderate" selected>Moderate</option>
           <option Value="none">None</option>
-          <option Value="strict">strict</option>
+          <option Value="strict">Strict</option>
         </select>
 
         <button type="submit">Search</button>
