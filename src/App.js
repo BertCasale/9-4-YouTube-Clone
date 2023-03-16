@@ -11,6 +11,8 @@ import About from "./Components/about/About";
 
 function App() {
   const [comments, setComments] = useState({});
+  const [prunedURL, setPrunedURL] = useState("");
+
   // console.log(test);
   return (
     <div className="App">

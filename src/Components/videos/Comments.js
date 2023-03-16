@@ -3,78 +3,94 @@ import "./Comments.css";
 import CommentFormAdd from "./CommentFormAdd";
 import Comment from "./Comment";
 
-// inside function body near top;
-// const [comments, setCommments] = useState([]);
-// in <Video comments={comments} setComments={setComments} />
-// make sure props are passed from Videos on down.
-// in main function logic, I pass the onClick.  So it's a lot of rewriting actually.
+export default function Comments({ comments, setComments }) {
 
-/*
-Decided not to go with infinitely-expandable-reply-chains with customizable limiting
-parameters for now.  As far as I know, if comment data is to be stored in localStorage
-(a stretch goal) then separate save files are by host.  Explicitly,
-http://projectname/video/videoOne and http://projectname/video/videoTwo would have to
-share the same localStorage file.
+    // inside function body near top;
+    // const [comments, setCommments] = useState([]);
+    // in <Video comments={comments} setComments={setComments} />
+    // make sure props are passed from Videos on down.
+    // in main function logic, I pass the onClick.  So it's a lot of rewriting actually.
+    // change to react router
 
-So rather than storing file references with separate state references for each video,
-one *large* file has to be referenced.  Currently, I'm thinking to store the path in the
-e.g. commentID1 object, and to store sub-comment arrays under a key with value commentID1.
+    /*
+    Decided not to go with infinitely-expandable-reply-chains with customizable limiting
+    parameters for now.  As far as I know, if comment data is to be stored in localStorage
+    (a stretch goal) then separate save files are by host.  Explicitly,
+    http://projectname/video/videoOne and http://projectname/video/videoTwo would have to
+    share the same localStorage file.
+    
+    So rather than storing file references with separate state references for each video,
+    one *large* file has to be referenced.  Currently, I'm thinking to store the path in the
+    e.g. commentID1 object, and to store sub-comment arrays under a key with value commentID1.
+    
+    There's some additional oddness about referencing object inside array inside object.
+    Preferably would eliminate arrays, but using arrays to set up ordered list of comments
+    is too convenient.
+    
+    At any rate, for now too much time being spent on that a feature that is not
+    part of core or stretch requirements.  So decided not to implement.  - jl
+    
+    Data sample stucture:
+    {
+        qg4FJzdsmuw: [ // videoID
+            {
+                commenterName: "Aileen",
+                commentTime: 1678904204798 // milliseconds
+                commentID: "qg4FJzdsmuwAileen1678904204798",
+                isEditing: false,
+                commentText: "I would like to eat apples"
+            }
+            {
+                commenterName: "Bob",
+                commentTime: "1104",
+                commentID: "video01Bob1104",
+                isEditing: false,
+                commentText: "I would like to eat beef"
+            }
+        ]
+    
+        // There are no comments for video02.  Test on truthy/falsy so renders nothing.
+    
+        video03: [
+            {
+                commenterName: "Charlie",
+                commentTime: "1403",
+                commentID: "video03Charlie1403",
+                isEditing: false,
+                commentText: "I would like to eat cake"
+            }
+        ]
+    }
+    */
 
-There's some additional oddness about referencing object inside array inside object.
-Preferably would eliminate arrays, but using arrays to set up ordered list of comments
-is too convenient.
-
-At any rate, for now too much time being spent on that a feature that is not
-part of core or stretch requirements.  So decided not to implement.  - jl
-
-Data sample stucture:
-{
-    video01: [
-        {
-            commenterName: "Aileen",
-            commentTime: "1102",
-            commentID: "video01Aileen1102",
-            isEditing: false,
-            commentText: "I would like to eat apples"
+    const addComment = (pathIDString, commentObject) => {
+        const commentTag = `${pathIDString}${commentObject.commenterName}${commentObject.commentTime}`
+        if (!comments[pathIDString]) {
+            setComments({
+                ...comments, 
+                [pathIDString]: [
+                    commentObject
+                ]
+            });
+        } else {
+            setComments({
+                ...comments, 
+                [pathIDString]: [commentObject, ...comments[pathIDString]]
+            });
         }
-        {
-            commenterName: "Bob",
-            commentTime: "1104",
-            commentID: "video01Bob1104",
-            isEditing: false,
-            commentText: "I would like to eat beef"
-        }
-    ]
+    }
 
-    // There are no comments for video02.  Test on truthy/falsy so renders nothing.
-
-    video03: [
-        {
-            commenterName: "Charlie",
-            commentTime: "1403",
-            commentID: "video03Charlie1403",
-            isEditing: false,
-            commentText: "I would like to eat cake"
-        }
-    ]
-}
-*/
-
-const addComment = (pathIDString, commentObject) => {
-    const commentTag = `${pathIDString}${commentObject.commenterName}${commentObject.commentTime}`
-    if (!comments[pathIDString]) {
-        setComments({
-            ...comments, [pathIDString]: [
-                commentObject
-            ]
-        });
-    } else {
+    const mutateCommentProperty = (videoID, commentTag, property, newValue) => {
+        const indexOfComment = comments[videoID].findIndex(element => element.commentID === commentTag);
         setComments({
             ...comments,
-            [pathIDString]: [...comments[pathIDString],
-                commentObject]
-        });
+            [videoID]: [...comments[videoID].slice(0, indexOfComment),
+            { ...comments[videoID][indexOfComment], [property]: newValue },
+            ...comments[videoID].slice(indexOfComment + 1)
+            ]
+        })
     }
+
 }
 
 const mutateCommentProperty = (videoID, commentTag, property, newValue) => {
@@ -117,7 +133,6 @@ const deleteComment = (videoID, commentTag) => {}
 
 export default function Comments({comments, setComments}) {
 
-
     const location = useLocation();
 
     //prunes string, default is after second incidence of "/"
@@ -131,12 +146,22 @@ export default function Comments({comments, setComments}) {
         pruneCount = pruneCount - 1;
         return urlPruner(loopPrune, pruneCharacter, pruneCount);
     }
+    const prunedURL = urlPruner(location.pathname);
 
     // console.log(urlPruner(location.pathname)); // test OK 2023 03 12 jl
 
     return (
         <div>
-            <CommentFormAdd />
+            <CommentFormAdd addComment={addComment} />
+            {
+                comments[prunedURL] ? comments[prunedURL].map((comment) => {
+                    return (
+                        <Comment key={comment.commentID} comment={comment} />
+                    )
+                }) : <></>
+
+            }
+
         </div>
     );
 }
