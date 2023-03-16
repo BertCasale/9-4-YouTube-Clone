@@ -67,14 +67,14 @@ export default function Comments({ comments, setComments }) {
         const commentTag = `${pathIDString}${commentObject.commenterName}${commentObject.commentTime}`
         if (!comments[pathIDString]) {
             setComments({
-                ...comments, 
+                ...comments,
                 [pathIDString]: [
                     commentObject
                 ]
             });
         } else {
             setComments({
-                ...comments, 
+                ...comments,
                 [pathIDString]: [commentObject, ...comments[pathIDString]]
             });
         }
@@ -91,47 +91,18 @@ export default function Comments({ comments, setComments }) {
         })
     }
 
-}
-
-const mutateCommentProperty = (videoID, commentTag, property, newValue) => {
-    const indexOfComment = comments[videoID].findIndex(element => element.commentID === commentTag);
-    setComments({
-        ...comments,
-        [videoID]: [...comments[videoID].slice(0, indexOfComment),
-        { ...comments[videoID][indexOfComment], [property]: newValue },
-        ...comments[videoID].slice(indexOfComment + 1)
-        ]
-    })
-}
-
-const setEditingCommentTrue = (videoID) => {
-    setComments({ ...comments, [videoID]: [true, ...comments[videoID].splice(1)] });
-}
-
-const editComment = (videoID, commentReference, comment) => {
-    // update the videoID reference but the rest . . . 
-    // [videoID]:[true, [{name: bob, time: now, comment: "woo", 
-    // isExpanded:  shows children comments or not.  Default false.
-    // repliedComments: [{name: hamster ...}  //hamsterComments] } // bobComment
-    //, {comment2}, {comment3}]]
-    //IF !repliedComments, then render nothing.
-    //IF repliedComments, render DOWN arrow if NOT expanded, UP arrow if expanded.
-    // so "commentReference" is like, setComments({
-    //...comments,
-    // [videoID]: [false, ...comments[videoID].splice(1)] 
-    // then redefine the component
-    // })
-    // When I CREATE the component, I pass parentComponent chains down.
-}
-
-const deleteComment = (videoID, commentTag) => {}
-
-// NOTE TO SELF:  COMMENTS LIVE IN STATE.
-//localStorage is by origin, not URL, so useState in Videos (plural)
-// { prunedVideoID1: [editBoolean, commentArray1], prunedVideoID2: [editBoolean, commentArray2], etc. }
 
 
-export default function Comments({comments, setComments}) {
+
+
+    const deleteComment = (videoID, commentTag) => { }
+
+    // NOTE TO SELF:  COMMENTS LIVE IN STATE.
+    //localStorage is by origin, not URL, so useState in Videos (plural)
+    // { prunedVideoID1: [editBoolean, commentArray1], prunedVideoID2: [editBoolean, commentArray2], etc. }
+
+
+
 
     const location = useLocation();
 

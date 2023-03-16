@@ -20,7 +20,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/videos/:topic" element={<Videos comments={comments} setComments={setComments}/>} />
+          <Route path="/videos/:topic" element={<Videos />} />
           <Route path="/video/:id" element={<Video comments={comments} setComments={setComments}/>} />
           <Route path="/about" element={<About />} />
         </Routes>
