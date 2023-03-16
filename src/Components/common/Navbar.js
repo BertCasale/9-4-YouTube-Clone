@@ -3,23 +3,38 @@ import { useState } from "react";
 import "./Navbar.css"
 
 export default function Navbar() {
-  const [search, setSearch] = useState("");
   const [showFilters, setShowFilters] = useState(false);
   const navigate = useNavigate();
-
-  //when the text changes, set the search state
+  let search = "";
+  let sortingBy = "relevance";
+  let quantity = "20";
+  let safeSearch = "moderate";
+  
   function textChange(event) {
-    setSearch(event.target.value);
+    search = event.target.value;
+  }
+
+  function quantityChange(event) {
+    quantity = event.target.value;
+  }
+
+  function sortChange(event) {
+    sortingBy = event.target.value;
+  }
+
+  function safeSearchChange(event) {
+    safeSearch = event.target.value;
   }
 
   //when the search form is submitted, navigate to the page with the videos
   function searchSubmit(event) {
     event.preventDefault();
     event.target.searchbox.value = "";
-    navigate(`/videos/${encodeURIComponent(search)}`);
+    navigate(`/videos/${encodeURIComponent(search)}&maxResults=${quantity}&order=${sortingBy}&safeSearch=${safeSearch}`);
   }
 
-  function showOrHideFilters() {
+  function showOrHideFilters(event) {
+    event.preventDefault();
     setShowFilters(!showFilters);
   }
 
@@ -38,33 +53,36 @@ export default function Navbar() {
         id="searchbox" 
         name="searchbox"/>
 
+      <button type="submit">Search</button>
+
       <button className="filters-button" onClick={showOrHideFilters}>{showFilters ? "Hide Filters" : "Show Filters"}</button>
+
       {showFilters ? <div className="filters">
-        <label for="quantity">Quantity:</label>
+        <p><label htmlFor="quantity">Quantity:</label>
         <input 
           type="number"
           min="5"
           max="50"
           id="quantity"
           name="quantity"
-          defaultValue="20"/>
+          defaultValue="20"
+          onChange={quantityChange}/></p>
 
-        <label for="sortby"></label>
-        <select id="sortby" name="sortby">
-          <option Value="Relevance" selected>Relevance</option>
-          <option Value="Date">Date</option>
-          <option Value="Rating">Rating</option>
-          <option Value="Title">Title</option>
-        </select>
+        <p><label htmlFor="sortby">Sort By:</label>
+        <select id="sortby" name="sortby" defaultValue="relevance" onChange={sortChange}>
+          <option value="relevance">Relevance</option>
+          <option value="date">Date</option>
+          <option value="rating">Rating</option>
+          <option value="title">Title</option>
+        </select></p>
 
-        <label for="safe-search">Safe Search</label>
-        <select id="safe-search" name="safe-search">
-          <option Value="moderate" selected>Moderate</option>
-          <option Value="none">None</option>
-          <option Value="strict">Strict</option>
-        </select>
+        <p><label htmlFor="safe-search">Safe Search:</label>
+        <select id="safe-search" name="safe-search" defaultValue="moderate" onChange={safeSearchChange}>
+          <option value="moderate">Moderate</option>
+          <option value="none">None</option>
+          <option value="strict">Strict</option>
+        </select></p>
 
-        <button type="submit">Search</button>
       </div>
       : null}
       
