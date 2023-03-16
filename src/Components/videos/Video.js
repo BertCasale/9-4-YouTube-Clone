@@ -4,6 +4,7 @@ import YouTube from "react-youtube";
 import "./Video.css"
 
 export default function Video({comments, setComments}) {
+
   const location = useLocation();
 
   const urlPruner = (urlString, pruneCharacter = "/", pruneCount = 2) => {

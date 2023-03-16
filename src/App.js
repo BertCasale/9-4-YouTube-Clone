@@ -12,6 +12,7 @@ import About from "./Components/about/About";
 function App() {
   const [comments, setComments] = useState({});
   const [prunedURL, setPrunedURL] = useState("");
+
   // console.log(test);
   return (
     <div className="App">
@@ -20,7 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/videos/:topic" element={<Videos comments={comments} setComments={setComments}/>} />
-          <Route path="/video/:id" element={<Video comments={comments} setComments={setComments} prunedURL={prunedURL} setPrunedURL={setPrunedURL}/>} />
+          <Route path="/video/:id" element={<Video comments={comments} setComments={setComments}/>} />
           <Route path="/about" element={<About />} />
         </Routes>
       </Router>
