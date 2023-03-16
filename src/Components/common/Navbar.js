@@ -19,7 +19,8 @@ export default function Navbar() {
     navigate(`/videos/${encodeURIComponent(search)}`);
   }
 
-  function showOrHideFilters() {
+  function showOrHideFilters(event) {
+    event.preventDefault();
     setShowFilters(!showFilters);
   }
 
@@ -38,33 +39,35 @@ export default function Navbar() {
         id="searchbox" 
         name="searchbox"/>
 
+      <button type="submit">Search</button>
+
       <button className="filters-button" onClick={showOrHideFilters}>{showFilters ? "Hide Filters" : "Show Filters"}</button>
+
       {showFilters ? <div className="filters">
-        <label for="quantity">Quantity:</label>
+        <p><label htmlFor="quantity">Quantity:</label>
         <input 
           type="number"
           min="5"
           max="50"
           id="quantity"
           name="quantity"
-          defaultValue="20"/>
+          defaultValue="20"/></p>
 
-        <label for="sortby"></label>
-        <select id="sortby" name="sortby">
-          <option Value="Relevance" selected>Relevance</option>
-          <option Value="Date">Date</option>
-          <option Value="Rating">Rating</option>
-          <option Value="Title">Title</option>
-        </select>
+        <p><label htmlFor="sortby">Sort By:</label>
+        <select id="sortby" name="sortby" defaultValue="Relevance">
+          <option value="Relevance">Relevance</option>
+          <option value="Date">Date</option>
+          <option value="Rating">Rating</option>
+          <option value="Title">Title</option>
+        </select></p>
 
-        <label for="safe-search">Safe Search</label>
-        <select id="safe-search" name="safe-search">
-          <option Value="moderate" selected>Moderate</option>
-          <option Value="none">None</option>
-          <option Value="strict">Strict</option>
-        </select>
+        <p><label htmlFor="safe-search">Safe Search:</label>
+        <select id="safe-search" name="safe-search" defaultValue="Moderate">
+          <option value="moderate">Moderate</option>
+          <option value="none">None</option>
+          <option value="strict">Strict</option>
+        </select></p>
 
-        <button type="submit">Search</button>
       </div>
       : null}
       
