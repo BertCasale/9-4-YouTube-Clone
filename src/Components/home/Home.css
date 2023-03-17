@@ -4,7 +4,6 @@
 }
 
 .popular-videos {
-  outline: solid 1px black;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -14,4 +13,8 @@
   outline: 1px solid black;
   margin: 10px;
   width: 200px;
+}
+
+.Home h1 {
+  text-align: center;
 }
