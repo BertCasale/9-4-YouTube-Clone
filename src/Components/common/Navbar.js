@@ -9,7 +9,8 @@ export default function Navbar() {
   let sortingBy = "relevance";
   let quantity = "20";
   let safeSearch = "moderate";
-  
+
+  //functions for getting the values from the inputs
   function textChange(event) {
     search = event.target.value;
   }
@@ -47,13 +48,14 @@ export default function Navbar() {
 
     <form className="search-form" onSubmit={searchSubmit}>
       <input 
+        className="search-input"
         type="search" 
         onChange={textChange}
         placeholder="Search..." 
         id="searchbox" 
         name="searchbox"/>
 
-      <button type="submit">Search</button>
+      <button className="submit" type="submit">Search</button>
 
       <button className="filters-button" onClick={showOrHideFilters}>{showFilters ? "Hide Filters" : "Show Filters"}</button>
 

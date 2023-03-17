@@ -4,7 +4,7 @@ import { getTopic } from "../../Api/fetch";
 import "./Videos.css"
 import ErrorMessage from "../errors/ErrorMessage";
 
-export default function Videos({comments, setComments}) {
+export default function Videos() {
   const { topic } = useParams();
   let [searchResults, setSearchResults] = useState([]);
   const [errorShown, setErrorShown] = useState(false);
@@ -23,6 +23,7 @@ export default function Videos({comments, setComments}) {
   }, [topic]);
 
   return(<div className="Videos">
+    <h1>Search Results</h1>
     <div className="search-results">
       {searchResults.map((video) => {
         return(<div 
@@ -42,9 +43,6 @@ export default function Videos({comments, setComments}) {
         </div>);
       })}
     </div>
-    
-    {/* remove this after finalizing css */}
-      <button onClick={() => setErrorShown(true)}>show error message</button>
 
       {errorShown ? <ErrorMessage setErrorShown={setErrorShown} />
       : null}
