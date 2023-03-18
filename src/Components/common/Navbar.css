@@ -4,7 +4,7 @@
   display: grid;
   position: sticky;
   top: 0;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 2fr 1fr;
   grid-template-areas: "nav search .";
 }
 
@@ -24,6 +24,16 @@ nav a {
 }
 
 .search-form {
-  grid: search;
+  grid-area: search;
   padding: 15px 20px;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+}
+
+.filters .input {
+  margin-right: 2px;
 }
