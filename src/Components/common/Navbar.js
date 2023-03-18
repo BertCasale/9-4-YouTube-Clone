@@ -40,7 +40,7 @@ export default function Navbar() {
 
       <button className="filters-button" onClick={showOrHideFilters}>{showFilters ? "Hide Filters" : "Show Filters"}</button>
       {showFilters ? <div className="filters">
-        <label for="quantity">Quantity:</label>
+        <label htmlFor="quantity">Quantity:</label>
         <input 
           type="number"
           min="5"
@@ -49,19 +49,19 @@ export default function Navbar() {
           name="quantity"
           defaultValue="20"/>
 
-        <label for="sortby"></label>
-        <select id="sortby" name="sortby">
-          <option Value="Relevance" selected>Relevance</option>
-          <option Value="Date">Date</option>
-          <option Value="Rating">Rating</option>
-          <option Value="Title">Title</option>
+        <label htmlFor="sortby"></label>
+        <select id="sortby" name="sortby" defaultValue="Relevance">
+          <option value="Relevance" >Relevance</option>
+          <option value="Date">Date</option>
+          <option value="Rating">Rating</option>
+          <option value="Title">Title</option>
         </select>
 
-        <label for="safe-search">Safe Search</label>
-        <select id="safe-search" name="safe-search">
-          <option Value="moderate" selected>Moderate</option>
-          <option Value="none">None</option>
-          <option Value="strict">Strict</option>
+        <label htmlFor="safe-search">Safe Search</label>
+        <select id="safe-search" name="safe-search" defaultValue="moderate">
+          <option value="moderate" >Moderate</option>
+          <option value="none">None</option>
+          <option value="strict">Strict</option>
         </select>
 
         <button type="submit">Search</button>
