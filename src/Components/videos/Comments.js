@@ -5,38 +5,36 @@ import Comment from "./Comment";
 
 export default function Comments({ comments, setComments }) {
 
-    // inside function body near top;
-    // const [comments, setCommments] = useState([]);
-    // in <Video comments={comments} setComments={setComments} />
-    // make sure props are passed from Videos on down.
-    // in main function logic, I pass the onClick.  So it's a lot of rewriting actually.
-    // change to react router
-
     /*
     Decided not to go with infinitely-expandable-reply-chains with customizable limiting
     parameters for now.  As far as I know, if comment data is to be stored in localStorage
     (a stretch goal) then separate save files are by host.  Explicitly,
     http://projectname/video/videoOne and http://projectname/video/videoTwo would have to
-    share the same localStorage file.
+    share the same localStorage file (and all other videos as well)
     
-    So rather than storing file references with separate state references for each video,
-    one *large* file has to be referenced.  Currently, I'm thinking to store the path in the
-    e.g. commentID1 object, and to store sub-comment arrays under a key with value commentID1.
-    
-    There's some additional oddness about referencing object inside array inside object.
-    Preferably would eliminate arrays, but using arrays to set up ordered list of comments
-    is too convenient.
-    
-    At any rate, for now too much time being spent on that a feature that is not
-    part of core or stretch requirements.  So decided not to implement.  - jl
+    If I understand this correctly, rather than storing file references with separate state
+    references for each video, one *large* file has to be referenced.
+
+    Logic behind data structure:  Object, for faster reference, and as object key set
+    to video ID makes for easy filtering.  Object value array, as one video may have multiple
+    comments.  Inside each array are comment objects.
+
+    If changing data structure to allow for nested replies to comments (and nested replies within
+    nested replies), when attempting to edit a *particular* response, a reference has to be passed.
+    This may be done by adding a key "commentReference" with value of array, each index
+    of array corresponding to depth (so [qq4FJzdsmuw, qqFJzdsmuwAileen1678904204798, ...])
+
+    However, each subsequent index of the array would have longer and longer names.  This could
+    be avoided by changing the naming scheme of the references, but would increase difficulty
+    of understanding the code, particularly when transitioning from video ID to comment ID.
     
     Data sample stucture:
     {
         qg4FJzdsmuw: [ // videoID
             {
                 commenterName: "Aileen",
-                commentTime: 1678904204798 // milliseconds
-                commentID: "qg4FJzdsmuwAileen1678904204798",
+                commentTime: 1678904204798 // milliseconds since 1970 or some such
+                commentID: "qg4FJzdsmuwAileen1678904204798", // this is used for key, and may cause issue as it is NOT necessarily unique.  I avoided using the uniqueID package as I don't understand its inner workings yet (though I can get it to work.)
                 isEditing: false,
                 commentText: "I would like to eat apples"
             }

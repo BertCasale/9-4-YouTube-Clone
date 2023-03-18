@@ -60,6 +60,7 @@ export default function Navbar() {
       <button className="filters-button" onClick={showOrHideFilters}>{showFilters ? "Hide Filters" : "Show Filters"}</button>
 
       {showFilters ? <div className="filters">
+
         <p><label htmlFor="quantity">Quantity:</label>
         <input 
           type="number"
