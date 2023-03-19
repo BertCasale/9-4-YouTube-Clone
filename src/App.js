@@ -10,12 +10,16 @@ import About from "./Components/about/About";
 // const test = process.env.REACT_APP_YOUTUBE_API_KEY;
 
 function App() {
-  const [comments, setComments] = useState({});
 
-  // implements localStorage
+  //if comments exist in localStorage, initial set to that value.  Otherwise initial set to {}.
+  const [comments, setComments] = useState(() => {
+    const storageComments = JSON.parse(localStorage.getItem('comments'));
+    return storageComments || {};
+  });
+
+  // when comments change, value put in localStorage
   useEffect(() => {
-    localStorage.setItem("commentsLocalStorage", JSON.stringify(comments));
-    console.log("Comments in localStorage:", comments);
+    localStorage.setItem('comments', JSON.stringify(comments));
   }, [comments]);
 
 
